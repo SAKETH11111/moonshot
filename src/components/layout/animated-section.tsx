@@ -1,6 +1,7 @@
 "use client"; // Required for framer-motion
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { cn } from "~/lib/utils";
 
 interface AnimatedSectionProps {
