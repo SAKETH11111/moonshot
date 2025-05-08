@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Or your default branch, e.g., master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # To push to gh-pages branch
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x' # Specify your Node.js version
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js application
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          # Optional: if your repository name is like <username>/<repository-name>.github.io
+          # then you don't need a custom CNAME or publish_branch.
+          # If it's a regular repository, GitHub Pages will be served at
+          # <username>.github.io/<repository-name>
+          # publish_branch: gh-pages # This is the default
+          # user_name: 'github-actions[bot]' # Default
+          # user_email: 'github-actions[bot]@users.noreply.github.com' # Default
