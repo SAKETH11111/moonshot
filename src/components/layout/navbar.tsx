@@ -64,8 +64,9 @@ export function Navbar() {
           <NavigationMenuList>
             {navLinks.map((link) => (
               <NavigationMenuItem key={link.href}>
-                <Link href={link.href}>
-                  <NavigationMenuLink
+                <NavigationMenuLink asChild>
+                  <Link
+                    href={link.href}
                     className={cn(
                       navigationMenuTriggerStyle(),
                       pathname === link.href
@@ -75,8 +76,8 @@ export function Navbar() {
                     )}
                   >
                     {link.label}
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>

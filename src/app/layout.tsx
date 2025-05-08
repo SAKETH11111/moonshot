@@ -38,7 +38,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fontSans.variable}`} suppressHydrationWarning> {/* Removed fontSerif.variable for now */}
+    <html lang="en" className={`${fontSans.variable}`} suppressHydrationWarning>{/* Removed fontSerif.variable for now */}
       <body>
         <ThemeProvider
           attribute="class"
