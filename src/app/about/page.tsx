@@ -3,6 +3,15 @@
 import { Zap, Leaf, Factory, Globe } from "lucide-react"; // Icons for values
 import { AnimatedSection, itemVariants } from "~/components/layout/animated-section"; // Import AnimatedSection
 import { motion } from "framer-motion"; // Import motion for item variants
+import Image from "next/image"; // Import Next Image
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card"; // Import Card components
 import {
   Tooltip,
   TooltipContent,
@@ -115,7 +124,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* Team Section Placeholder */}
+      {/* Team Section */}
       <AnimatedSection tag="section" className="w-full py-12 md:py-20 bg-background" animationStyle="fadeInRight">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <Tooltip>
@@ -128,13 +137,36 @@ export default function AboutUsPage() {
               <p>The People Behind Corbent</p>
             </TooltipContent>
           </Tooltip>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We are a passionate group of scientists, engineers, and innovators dedicated to solving one of the world&apos;s most pressing challenges.
-            <br /><br />
-            (Team member profiles will be added here soon.)
-          </p>
-          <div className="mt-12 p-8 bg-muted/50 rounded-lg">
-            <p className="text-muted-foreground">[Team Section Placeholder - Future team members will be showcased here with photos and bios.]</p>
+          <div className="mt-12 flex justify-center"> {/* Centering the card */}
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.03, y: -5, boxShadow: "0px 10px 25px rgba(0,0,0,0.12)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              className="w-full max-w-md" // Made card slightly wider
+            >
+              <Card className="overflow-hidden text-center h-full flex flex-col shadow-2xl"> {/* Added more shadow */}
+                <CardHeader className="p-0 relative">
+                  <div className="w-full h-80 relative"> {/* Increased image height */}
+                    <Image
+                      src="https://i.ibb.co/ZznVWGJD/Rudaiba-pic.jpg" // Placeholder, user to provide direct link
+                      alt="Rudaiba Tarannum"
+                      width={400}
+                      height={400}
+                      className="rounded-t-lg object-cover"
+                    />
+                  </div>
+                </CardHeader>
+                <CardContent className="p-8 flex-grow mt-4"> {/* Added mt-4 to prevent overlap */}
+                  <CardTitle className="text-3xl font-bold text-primary font-serif">Rudaiba Tarannum</CardTitle>
+                  <CardDescription className="text-lg text-muted-foreground mt-2">Founder</CardDescription>
+                  {/* Bio removed as per request */}
+                </CardContent>
+                <CardFooter className="p-4 bg-muted/30 border-t flex justify-center"> {/* Centering footer content */}
+                  <p className="text-xs text-muted-foreground">Founder</p>
+                </CardFooter>
+              </Card>
+            </motion.div>
+            {/* Add more team members here as needed */}
           </div>
         </div>
       </AnimatedSection>

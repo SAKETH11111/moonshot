@@ -10,7 +10,7 @@ import { V0Navbar } from "~/components/layout/v0-navbar"; // Import the new V0Na
 export const metadata: Metadata = {
   title: "Corbent - Turning Air into Stone",
   description: "Revolutionary direct air capture technology using 90% less energy.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }], // Consider creating a Corbent favicon
+  icons: [{ rel: "icon", url: "/corbent_logo.png" }], // Updated favicon path
 };
 
 // Placeholder for Kievit font (sans-serif) - replace with actual font setup

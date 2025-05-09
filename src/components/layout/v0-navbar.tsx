@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Home, Cpu, Info } from "lucide-react" // Updated icons
 import { useTheme } from "next-themes"
 import Link from "next/link" // Import Link for navigation
+import Image from "next/image" // Import Next.js Image component
 
 interface MenuItem {
   icon: React.ReactNode
@@ -91,7 +92,7 @@ export function V0Navbar() {
 
   return (
     <motion.nav
-      className="p-2 rounded-2xl bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-lg border border-border/40 shadow-lg relative overflow-hidden"
+      className="p-2 rounded-2xl bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-lg border border-border/40 shadow-lg relative overflow-hidden flex items-center" // Added flex items-center
       initial="initial"
       whileHover="hover"
     >
@@ -100,6 +101,12 @@ export function V0Navbar() {
         className={`absolute -inset-2 bg-gradient-radial from-transparent to-transparent rounded-3xl z-0 pointer-events-none`}
         variants={navGlowVariants}
       />
+      {/* Corbent Logo */}
+      <Link href="/" legacyBehavior passHref>
+        <a className="mr-4 ml-2 z-10"> {/* Added margin for spacing */}
+          <Image src="/corbent_logo.png" alt="Corbent Logo" width={30} height={30} />
+        </a>
+      </Link>
       <ul className="flex items-center gap-2 relative z-10">
         {menuItems.map((item, _index) => (
           <motion.li key={item.label} className="relative">
