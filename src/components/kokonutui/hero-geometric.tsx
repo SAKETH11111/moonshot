@@ -172,7 +172,7 @@ export default function HeroGeometric({
           >
             {/* Placeholder for Corbent Logo - MountainIcon for now */}
             {/* <Image src="/corbent-logo-mark.svg" alt="Corbent Logo" width={20} height={20} /> */}
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
+            <svg xmlns="https://i.ibb.co/bRRTnbZF/corbent-logo.png" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
             <span className="text-sm text-foreground/60 dark:text-white/60 tracking-wide">{badge}</span>
           </motion.div>
 

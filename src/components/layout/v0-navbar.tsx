@@ -104,7 +104,7 @@ export function V0Navbar() {
       {/* Corbent Logo */}
       <Link href="/" legacyBehavior passHref>
         <a className="mr-4 ml-2 z-10"> {/* Added margin for spacing */}
-          <Image src="/corbent_logo.png" alt="Corbent Logo" width={30} height={30} />
+          <Image src="https://i.ibb.co/bRRTnbZF/corbent-logo.png" alt="Corbent Logo" width={30} height={30} />
         </a>
       </Link>
       <ul className="flex items-center gap-2 relative z-10">
