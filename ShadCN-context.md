@@ -12,3 +12,4 @@ This file tracks the ShadCN components utilized in the Corbent website project.
 - Card (`src/components/ui/card.tsx`)
 - Sheet (`src/components/ui/sheet.tsx`)
 - Dropdown Menu (`src/components/ui/dropdown-menu.tsx`)
+- Tooltip (`src/components/ui/tooltip.tsx`)

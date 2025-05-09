@@ -15,6 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "~/com
 import { ArrowRight, CheckCircle2, Zap, Scaling, ShieldCheck, GitCommitHorizontal } from "lucide-react"; // Added more icons
 import { motion } from "framer-motion";
 import { AnimatedSection, itemVariants } from "~/components/layout/animated-section"; // Import AnimatedSection
+import { GlowingEffect } from "~/components/ui/glowing-effect"; // Import the effect component
 
 const comparisonData = [
   {
@@ -93,7 +94,7 @@ export default function HomePage() {
       {/* Brief Problem Statement */}
       <section className="w-full py-16 md:py-24 lg:py-32 bg-background text-foreground">
         <div className="container mx-auto px-6 md:px-8">
-          <AnimatedSection className="max-w-3xl mx-auto text-center">
+          <AnimatedSection className="max-w-3xl mx-auto text-center" animationStyle="fadeInLeft">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl font-serif text-primary">
               The Carbon Crisis: A Legacy We Must Address
             </h2>
@@ -121,8 +122,22 @@ export default function HomePage() {
             staggerChildren={0.1}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center"
           >
-            <motion.div variants={itemVariants}>
-              <Card className="bg-card/60 dark:bg-card/80 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col h-full">
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.03, y: -5, boxShadow: "0px 10px 25px rgba(0,0,0,0.12)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
+              {/* Added relative class */}
+              <Card className="relative bg-card/60 dark:bg-card/80 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col h-full">
+                {/* Added GlowingEffect */}
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  borderWidth={3}
+                />
                 <CardHeader className="items-center text-center">
                   <Zap className="h-12 w-12 text-secondary mb-3" />
                 <CardTitle className="text-2xl font-semibold font-serif text-foreground">MOF-Powered Capture</CardTitle>
@@ -132,8 +147,22 @@ export default function HomePage() {
               </CardContent>
               </Card>
             </motion.div>
-            <motion.div variants={itemVariants}>
-              <Card className="bg-card/60 dark:bg-card/80 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col h-full">
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.03, y: -5, boxShadow: "0px 10px 25px rgba(0,0,0,0.12)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
+              {/* Added relative class */}
+              <Card className="relative bg-card/60 dark:bg-card/80 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col h-full">
+                 {/* Added GlowingEffect */}
+                 <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  borderWidth={3}
+                />
                 <CardHeader className="items-center text-center">
                   <Scaling className="h-12 w-12 text-secondary mb-3" /> {/* Changed icon */}
                 <CardTitle className="text-2xl font-semibold font-serif text-foreground">Electro-Swing Release</CardTitle>
@@ -143,8 +172,22 @@ export default function HomePage() {
               </CardContent>
               </Card>
             </motion.div>
-            <motion.div variants={itemVariants}>
-              <Card className="bg-card/60 dark:bg-card/80 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col h-full">
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.03, y: -5, boxShadow: "0px 10px 25px rgba(0,0,0,0.12)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
+               {/* Added relative class */}
+              <Card className="relative bg-card/60 dark:bg-card/80 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col h-full">
+                 {/* Added GlowingEffect */}
+                 <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  borderWidth={3}
+                />
                 <CardHeader className="items-center text-center">
                   <ShieldCheck className="h-12 w-12 text-secondary mb-3" /> {/* Changed icon */}
                 <CardTitle className="text-2xl font-semibold font-serif text-foreground">Modular & Mineralized</CardTitle>
@@ -221,14 +264,34 @@ export default function HomePage() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"
           >
             {roadmapPhases.map((phase) => (
-              <motion.div variants={itemVariants} key={phase.title}>
-                <Card className="bg-card/60 dark:bg-card/80 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col text-center items-center h-full">
-                  <CardHeader className="items-center">
+              <motion.div
+                variants={itemVariants}
+                key={phase.title}
+                whileHover={{ scale: 1.03, y: -5, boxShadow: "0px 10px 25px rgba(0,0,0,0.12)" }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
+                 {/* Added relative class */}
+                <Card className="relative bg-card/60 dark:bg-card/80 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col text-center items-center h-full">
+                   {/* Added GlowingEffect */}
+                   <GlowingEffect
+                    spread={40}
+                    glow={true}
+                    disabled={false}
+                    proximity={64}
+                    inactiveZone={0.01}
+                    borderWidth={3}
+                  />
+                  {/* Apply flex, flex-col, items-center to CardHeader for better centering of its content */}
+                  <CardHeader className="flex flex-col items-center text-center">
                     {phase.icon}
-                    <CardTitle className="text-xl font-semibold font-serif text-foreground">{phase.title}</CardTitle>
-                  <CardDescription className="text-xs text-secondary font-medium">{phase.status}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow">
+                    {/* Group title and status for consistent centering */}
+                    <div className="mt-2">
+                      <CardTitle className="text-xl font-semibold font-serif text-foreground">{phase.title}</CardTitle>
+                      {/* Added margin-top to status for consistent spacing */}
+                      <CardDescription className="text-xs text-secondary font-medium mt-1">{phase.status}</CardDescription>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-grow pt-2"> {/* Added small padding-top to CardContent */}
                   <p className="text-muted-foreground text-sm">{phase.description}</p>
                 </CardContent>
                 </Card>
@@ -240,7 +303,7 @@ export default function HomePage() {
       
       {/* Call to Action Section */}
       <section className="w-full py-20 md:py-32 bg-background text-center">
-        <AnimatedSection className="container mx-auto px-4 md:px-6">
+        <AnimatedSection className="container mx-auto px-4 md:px-6" animationStyle="fadeInUp"> {/* Added animation style */}
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl font-serif">
             Join the Climate Solution
           </h2>

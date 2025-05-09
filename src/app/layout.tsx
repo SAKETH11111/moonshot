@@ -5,7 +5,7 @@ import { Inter as FontSans } from "next/font/google"; // Using Inter as a placeh
 
 // import { TRPCReactProvider } from "~/trpc/react"; // Removed unused tRPC provider
 import { ThemeProvider } from "~/components/theme-provider";
-import { Navbar } from "~/components/layout/navbar"; // Import the Navbar
+import { V0Navbar } from "~/components/layout/v0-navbar"; // Import the new V0Navbar
 
 export const metadata: Metadata = {
   title: "Corbent - Turning Air into Stone",
@@ -45,9 +45,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children} {/* Removed TRPCReactProvider wrapper */}
-          {/* Consider adding a Footer component here later */}
+          {/* Wrap Navbar and children in a flex-col div */}
+          <div className="relative flex min-h-screen flex-col bg-background">
+            <header className="sticky top-0 z-50 flex justify-center py-4 backdrop-blur-md bg-background/80 border-b border-border/60">
+              <V0Navbar />
+            </header>
+            <main className="flex-1">{children}</main>
+            {/* Consider adding a Footer component here later */}
+          </div>
         </ThemeProvider>
       </body>
     </html>

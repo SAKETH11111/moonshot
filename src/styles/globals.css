@@ -142,3 +142,21 @@
     @apply bg-background text-foreground font-sans; /* Apply Kievit as default */
   }
 }
+
+/* Utility for the v0 Navbar glow effect */
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle,
+      hsl(var(--primary) / 0.15) 0%,
+      hsl(var(--primary) / 0.06) 50%,
+      hsl(var(--primary) / 0.0) 100%
+    );
+  }
+  .dark .bg-gradient-radial {
+     background-image: radial-gradient(circle,
+      hsl(var(--primary) / 0.30) 0%,
+      hsl(var(--primary) / 0.15) 50%,
+      hsl(var(--primary) / 0.0) 100%
+    );
+  }
+}
