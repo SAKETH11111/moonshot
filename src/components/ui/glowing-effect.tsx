@@ -91,7 +91,7 @@ const GlowingEffect = memo(
           const currentAngle =
             parseFloat(element.style.getPropertyValue("--start")) || 0;
           // Use non-null assertions here as well
-          let targetAngle =
+          const targetAngle =
             (180 * Math.atan2(mouseY - centerY!, mouseX - centerX!)) /
               Math.PI +
             90;

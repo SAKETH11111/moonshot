@@ -87,7 +87,7 @@ const sharedTransition = {
 export function V0Navbar() {
   const { theme } = useTheme()
 
-  const isDarkTheme = theme === "dark"
+  // const isDarkTheme = theme === "dark"; // Removed as it's unused
 
   return (
     <motion.nav
@@ -101,7 +101,7 @@ export function V0Navbar() {
         variants={navGlowVariants}
       />
       <ul className="flex items-center gap-2 relative z-10">
-        {menuItems.map((item, index) => (
+        {menuItems.map((item, _index) => (
           <motion.li key={item.label} className="relative">
             <motion.div
               className="block rounded-xl overflow-visible group relative"
