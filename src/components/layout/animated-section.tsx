@@ -1,6 +1,6 @@
 "use client"; // Required for framer-motion
 
-import { motion, type Variants as FramerVariants, type TargetAndTransition, type Transition as FramerTransition } from "framer-motion";
+import { motion, type Variants as FramerVariants } from "framer-motion"; // Removed unused types
 import { cn } from "~/lib/utils";
 
 interface AnimatedSectionProps {
@@ -11,27 +11,8 @@ interface AnimatedSectionProps {
   tag?: keyof typeof motion; // Optional: specify the motion tag (e.g., 'section', 'div')
 }
 
-// Define more specific types for our variants
-interface OurTransition extends FramerTransition {
-  duration?: number;
-  ease?: any; // framer-motion uses various types for ease
-  staggerChildren?: number;
-  delayChildren?: number;
-  delay?: number;
-}
-
-interface OurVisibleVariant extends TargetAndTransition {
-  opacity?: number;
-  y?: number;
-  transition: OurTransition; // Ensure transition is non-optional and uses OurTransition
-}
-
-interface OurVariants extends FramerVariants {
-  hidden: TargetAndTransition;
-  visible: OurVisibleVariant;
-}
-
-const defaultVariants: OurVariants = {
+// Revert to using standard FramerVariants
+const defaultVariants: FramerVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -43,7 +24,7 @@ const defaultVariants: OurVariants = {
   },
 };
 
-const containerVariants = (stagger: number = 0.1): OurVariants => ({
+const containerVariants = (stagger = 0.1): FramerVariants => ({ // Removed : number type annotation
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -61,45 +42,41 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   staggerChildren,
   tag = 'div', // Default to div
 }) => {
-  const MotionComponent = motion[tag];
-  const baseVariants: OurVariants = staggerChildren ? containerVariants(staggerChildren) : defaultVariants;
+  const variants = staggerChildren ? containerVariants(staggerChildren) : defaultVariants;
   const initial = "hidden";
   const whileInView = "visible";
   const viewport = { once: true, amount: 0.2 }; // Trigger when 20% is visible
 
-  let processedVariants: OurVariants = baseVariants; // Ensure consistent strict typing
+  // Define transition prop separately if delay is needed and not staggering
+  const transitionProp = (!staggerChildren && delay > 0) ? { delay } : undefined;
 
-  // Apply delay directly to the transition if not staggering children
-  if (!staggerChildren && delay > 0) {
-    // Create a new object, leveraging the stricter OurVariants type
-    processedVariants = {
-      ...baseVariants, // Spread all properties from baseVariants (OurVariants)
-      visible: { // Override the visible property
-        ...baseVariants.visible, // Spread all properties from baseVariants.visible (OurVisibleVariant)
-        transition: { // Override the transition property
-          ...baseVariants.visible.transition, // Spread all properties from baseVariants.visible.transition (OurTransition)
-          delay: delay, // Add/override the delay
-        },
-      },
-    };
+  // Define common props for the motion component
+  const commonProps = {
+    className: cn(className),
+    variants: variants,
+    initial: initial,
+    whileInView: whileInView,
+    viewport: viewport,
+    transition: transitionProp, // Apply delay via transition prop if defined
+  };
+
+  // Use conditional rendering to avoid dynamic motion[tag] in JSX return
+  if (tag === 'section') {
+    return <motion.section {...commonProps}>{children}</motion.section>;
   }
-  // If staggering, the container's delayChildren handles the initial pause
+  if (tag === 'li') {
+    return <motion.li {...commonProps}>{children}</motion.li>;
+  }
+  // Add other common tags if needed (e.g., 'ul', 'article')
+  // ...
 
-  return (
-    <MotionComponent
-      className={cn(className)}
-      variants={processedVariants as FramerVariants} // Cast to base FramerVariants for the component
-      initial={initial}
-      whileInView={whileInView}
-      viewport={viewport}
-    >
-      {children}
-    </MotionComponent>
-  );
-};
+  // Default to div
+  return <motion.div {...commonProps}>{children}</motion.div>;
+// Removed extra closing parenthesis from here
+}
 
 // Optional: Export item variants if needed directly in pages for staggered lists
-export const itemVariants: OurVariants = {
+export const itemVariants: FramerVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,

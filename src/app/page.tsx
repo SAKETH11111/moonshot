@@ -109,10 +109,10 @@ export default function HomePage() {
         <div className="container mx-auto px-6 md:px-8">
           <AnimatedSection className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl font-serif text-primary">
-              Corbent's Revolution: Efficient, Scalable, Permanent
+              Corbent&apos;s Revolution: Efficient, Scalable, Permanent
             </h2>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              We're rewriting the rules of direct air capture. Our breakthrough technology utilizes advanced Metal-Organic Frameworks (MOFs) and an innovative electro-swing process to remove CO₂ with unprecedented efficiency and minimal energy.
+              We&apos;re rewriting the rules of direct air capture. Our breakthrough technology utilizes advanced Metal-Organic Frameworks (MOFs) and an innovative electro-swing process to remove CO₂ with unprecedented efficiency and minimal energy.
             </p>
           </AnimatedSection>
           
@@ -176,7 +176,7 @@ export default function HomePage() {
           >
             <Table>
               <TableCaption className="py-4 text-sm text-muted-foreground">
-                Corbent's technology offers significant advantages in energy, cost, and scalability.
+                Corbent&apos;s technology offers significant advantages in energy, cost, and scalability.
               </TableCaption>
               <TableHeader>
                 <TableRow className="border-b-foreground/20">
@@ -245,7 +245,7 @@ export default function HomePage() {
             Join the Climate Solution
           </h2>
           <p className="mt-6 max-w-xl mx-auto text-lg text-muted-foreground md:text-xl">
-            Interested in partnering, investing, or learning more about Corbent's mission? We'd love to connect.
+            Interested in partnering, investing, or learning more about Corbent&apos;s mission? We&apos;d love to connect.
           </p>
           <div className="mt-10">
             <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg">
@@ -255,11 +255,11 @@ export default function HomePage() {
         </AnimatedSection>
       </section>
 
-      // Visual Timeline/Roadmap Section
-      // ... (previous timeline code) ...
+      {/* Visual Timeline/Roadmap Section */}
+      {/* ... (previous timeline code) ... */}
 
-      // Call to Action Section
-      // ... (previous CTA code) ...
+      {/* Call to Action Section */}
+      {/* ... (previous CTA code) ... */}
       {/* Removed stray comment terminator from here */}
     </main>
   );

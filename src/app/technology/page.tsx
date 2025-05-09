@@ -54,7 +54,7 @@ export default function TechnologyPage() {
             Our Core Technology
           </h1>
           <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground md:text-xl">
-            Discover the innovations that make Corbent's direct air capture a game-changer for climate action.
+            Discover the innovations that make Corbent&apos;s direct air capture a game-changer for climate action.
           </p>
         </div>
       </AnimatedSection>

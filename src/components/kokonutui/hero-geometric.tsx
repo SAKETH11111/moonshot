@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 // import { Pacifico } from "next/font/google" // Replaced with global font variable
-import Image from "next/image"
+// import Image from "next/image" // Removed unused import
 import { cn } from "~/lib/utils"
 
 // const pacifico = Pacifico({ // Replaced with global font variable

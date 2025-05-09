@@ -2,9 +2,8 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Inter as FontSans } from "next/font/google"; // Using Inter as a placeholder for Kievit
-import localFont from "next/font/local";
 
-import { TRPCReactProvider } from "~/trpc/react";
+// import { TRPCReactProvider } from "~/trpc/react"; // Removed unused tRPC provider
 import { ThemeProvider } from "~/components/theme-provider";
 import { Navbar } from "~/components/layout/navbar"; // Import the Navbar
 
@@ -47,7 +46,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+          {children} {/* Removed TRPCReactProvider wrapper */}
           {/* Consider adding a Footer component here later */}
         </ThemeProvider>
       </body>

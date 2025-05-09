@@ -15,7 +15,7 @@ import {
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
+  // SheetDescription, // Removed unused import
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -23,7 +23,7 @@ import {
 } from "~/components/ui/sheet";
 import { Button } from "~/components/ui/button"; // For the mobile menu trigger
 import { cn } from "~/lib/utils";
-import { MountainIcon, MenuIcon, XIcon } from "lucide-react"; // Added MenuIcon and XIcon
+import { MountainIcon, MenuIcon } from "lucide-react"; // Removed unused XIcon
 import { ThemeToggle } from "./theme-toggle"; // Import ThemeToggle
 
 const navLinks = [

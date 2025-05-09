@@ -89,7 +89,7 @@ export default function AboutUsPage() {
             Meet Our Team
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We are a passionate group of scientists, engineers, and innovators dedicated to solving one of the world's most pressing challenges.
+            We are a passionate group of scientists, engineers, and innovators dedicated to solving one of the world&apos;s most pressing challenges.
             <br /><br />
             (Team member profiles will be added here soon.)
           </p>
