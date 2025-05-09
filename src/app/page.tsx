@@ -312,7 +312,7 @@ export default function HomePage() {
           </p>
           <div className="mt-10">
             <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg">
-              <a href="/about">Learn More About Us <ArrowRight className="ml-2 h-5 w-5" /></a>
+              <a href="/moonshot/about">Learn More About Us <ArrowRight className="ml-2 h-5 w-5" /></a>
             </Button>
           </div>
         </AnimatedSection>
