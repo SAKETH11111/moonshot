@@ -118,8 +118,8 @@ export function V0Navbar() {
                   borderRadius: "16px",
                 }}
               />
-              {/* Link component will pass href and onClick to motion.a */}
-              <Link href={item.href}>
+              {/* Reverting to legacyBehavior with passHref for motion.a */}
+              <Link href={item.href} legacyBehavior passHref>
                 <motion.a
                   className="flex items-center gap-2 px-4 py-2 relative z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-xl"
                   variants={itemVariants}
@@ -133,8 +133,8 @@ export function V0Navbar() {
                   <span>{item.label}</span>
                 </motion.a>
               </Link>
-              {/* Link component will pass href and onClick to motion.a */}
-               <Link href={item.href}>
+              {/* Reverting to legacyBehavior with passHref for motion.a */}
+               <Link href={item.href} legacyBehavior passHref>
                 <motion.a
                   className="flex items-center gap-2 px-4 py-2 absolute inset-0 z-10 bg-transparent text-muted-foreground group-hover:text-foreground transition-colors rounded-xl"
                   variants={backVariants}

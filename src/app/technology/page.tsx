@@ -1,12 +1,21 @@
-import { CheckCircle2, Layers, Zap, Container, Archive } from "lucide-react";
+import Image from "next/image"; // Import Next.js Image component
+import { CheckCircle2 } from "lucide-react"; // Keep CheckCircle2 for list items
 import { AnimatedSection } from "~/components/layout/animated-section"; // Import AnimatedSection
 // Accordion imports removed
+// Lucide icons for placeholders (Layers, Zap, Container, Archive) are removed as we'll use actual images
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "~/components/ui/tooltip";
+
+// Import the new images
+import MofSheetsImage from "./Capturing CO₂ with MOF Sheets.png";
+import EsaImage from "./Electro-Swing CO₂ Release Process.png";
+import ModularDesignImage from "./Modular Air Filtration Design.png";
+import BasaltStorageImage from "./Permanent CO₂ Storage via Basalt.png";
+
 
 export default function TechnologyPage() {
   const coreInnovations = [
@@ -20,7 +29,8 @@ export default function TechnologyPage() {
         "Optimized for maximum air contact and CO₂ uptake.",
       ],
       imagePlaceholder: "Diagram of MOF sheet structure capturing CO₂ molecules.",
-      iconComponent: <Layers className="h-32 w-32 text-primary opacity-70" />
+      // iconComponent: <Layers className="h-32 w-32 text-primary opacity-70" /> // Removed
+      imageSrc: MofSheetsImage,
     },
     {
       title: "Electro-Swing Adsorption (ESA)",
@@ -32,7 +42,8 @@ export default function TechnologyPage() {
         "Eliminates the need for large heating/cooling infrastructure.",
       ],
       imagePlaceholder: "Animation/diagram showing CO₂ release via electro-swing.",
-      iconComponent: <Zap className="h-32 w-32 text-primary opacity-70" />
+      // iconComponent: <Zap className="h-32 w-32 text-primary opacity-70" /> // Removed
+      imageSrc: EsaImage,
     },
     {
       title: "Modular, Containerized Design",
@@ -44,7 +55,8 @@ export default function TechnologyPage() {
         "Scalable by simply adding more modules, from small to gigaton-scale projects.",
       ],
       imagePlaceholder: "Image of container modules being deployed or in a facility.",
-      iconComponent: <Container className="h-32 w-32 text-primary opacity-70" />
+      // iconComponent: <Container className="h-32 w-32 text-primary opacity-70" /> // Removed
+      imageSrc: ModularDesignImage,
     },
     {
       title: "Permanent Storage via Basalt Mineralization",
@@ -56,7 +68,8 @@ export default function TechnologyPage() {
         "Ensures no leakage and contributes to durable carbon removal.",
       ],
       imagePlaceholder: "Diagram illustrating CO₂ injection and mineralization in basalt.",
-      iconComponent: <Archive className="h-32 w-32 text-primary opacity-70" />
+      // iconComponent: <Archive className="h-32 w-32 text-primary opacity-70" /> // Removed
+      imageSrc: BasaltStorageImage,
     },
   ];
 
@@ -110,8 +123,15 @@ export default function TechnologyPage() {
               </ul>
             </div>
             <div className={`md:order-${index % 2 === 0 ? 2 : 1} mt-8 md:mt-0`}>
-              <div className="aspect-video bg-muted rounded-lg flex items-center justify-center p-4">
-                {innovation.iconComponent ? innovation.iconComponent : (
+              <div className="aspect-video bg-muted rounded-lg flex items-center justify-center p-4 overflow-hidden">
+                {innovation.imageSrc ? (
+                  <Image
+                    src={innovation.imageSrc}
+                    alt={innovation.imagePlaceholder || innovation.title}
+                    className="object-contain w-full h-full"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
                   <p className="text-sm text-muted-foreground">Visual coming soon</p>
                 )}
               </div>
