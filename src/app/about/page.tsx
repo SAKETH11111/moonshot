@@ -1,15 +1,15 @@
 "use client"; // Add this directive
 
-import { Zap, Leaf, Factory, Globe } from "lucide-react"; // Icons for values
+import { Zap, Leaf, Factory, Globe, Youtube, Linkedin, Rss as Substack } from "lucide-react"; // Icons for values, added social
 import { AnimatedSection, itemVariants } from "~/components/layout/animated-section"; // Import AnimatedSection
 import { motion } from "framer-motion"; // Import motion for item variants
 import Image from "next/image"; // Import Next Image
 import {
   Card,
-  CardContent,
+  // CardContent, // Unused
   CardDescription,
-  CardFooter,
-  CardHeader,
+  // CardFooter, // Unused
+  // CardHeader, // Unused
   CardTitle,
 } from "~/components/ui/card"; // Import Card components
 import {
@@ -18,6 +18,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "~/components/ui/tooltip";
+import { RainbowButton } from "~/components/ui/rainbow-button"; // Import RainbowButton
+import { SparklesText } from "~/components/ui/sparkles-text"; // Import SparklesText
+import { Squares } from "~/components/ui/squares-background"; // Import Squares
 
 export default function AboutUsPage() {
   const companyValues = [
@@ -45,10 +48,23 @@ export default function AboutUsPage() {
 
   return (
     <TooltipProvider delayDuration={200}>
-      <main className="flex min-h-screen flex-col items-center">
+      <main className="flex min-h-screen flex-col items-center relative"> {/* Added relative */}
+        {/* Full Page Squares Background */}
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1 }}> {/* Restored z-index, removed temp green bg */}
+          <Squares 
+            direction="diagonal"
+            speed={0.2} 
+            squareSize={35} 
+            borderColor="hsl(var(--border) / 0.1)" 
+            hoverFillColor="hsl(var(--primary) / 0.05)" 
+            className="w-full h-full" // Removed opacity classes for now
+          />
+        </div>
+
         {/* Hero Section */}
-        <AnimatedSection tag="section" className="w-full py-16 md:py-24 bg-gradient-to-b from-background to-background/80" animationStyle="fadeInUp">
-          <div className="container mx-auto px-4 md:px-6 text-center">
+        {/* Removed Squares from here, it's now page-wide */}
+        <AnimatedSection tag="section" className="w-full relative pt-16 md:pt-24 pb-8 md:pb-12" animationStyle="fadeInUp"> {/* Adjusted padding as background is separate */}
+          <div className="container mx-auto px-4 md:px-6 text-center relative z-10"> {/* Content needs to be above background */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl font-serif cursor-help">
@@ -66,9 +82,9 @@ export default function AboutUsPage() {
       </AnimatedSection>
 
       {/* Mission Statement Section */}
-      <AnimatedSection tag="section" className="w-full py-12 md:py-20 bg-background" animationStyle="fadeInLeft">
+      <AnimatedSection tag="section" className="w-full py-12 md:py-20 bg-transparent relative z-10" animationStyle="fadeInLeft"> {/* bg-transparent, relative z-10 */}
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center p-6 rounded-lg bg-background/80 backdrop-blur-sm shadow-xl"> {/* Added a semi-transparent card-like bg for readability */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <h2 className="text-3xl font-semibold tracking-tight text-primary sm:text-4xl font-serif cursor-help">
@@ -87,9 +103,10 @@ export default function AboutUsPage() {
       </AnimatedSection>
 
       {/* Company Values Section */}
-      <section className="w-full py-12 md:py-20 bg-background">
+      <section className="w-full py-12 md:py-20 bg-transparent relative z-10">  {/* bg-transparent, relative z-10 */}
         <div className="container mx-auto px-4 md:px-6">
-          <AnimatedSection className="text-center mb-12 md:mb-16" animationStyle="zoomIn">
+          {/* Optional: Add a card-like background for the title if needed for readability */}
+          <AnimatedSection className="text-center mb-12 md:mb-16 p-4 rounded-lg bg-background/80 backdrop-blur-sm shadow-md inline-block" animationStyle="zoomIn">
             <Tooltip>
               <TooltipTrigger asChild>
                 <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-serif cursor-help">
@@ -125,48 +142,93 @@ export default function AboutUsPage() {
       </section>
 
       {/* Team Section */}
-      <AnimatedSection tag="section" className="w-full py-12 md:py-20 bg-background" animationStyle="fadeInRight">
+      <AnimatedSection tag="section" className="w-full py-12 md:py-20 bg-transparent relative z-10" animationStyle="fadeInRight"> {/* bg-transparent, relative z-10 */}
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <Tooltip>
+          {/* Optional: Add a card-like background for the title if needed for readability */}
+          <div className="inline-block p-4 rounded-lg bg-background/80 backdrop-blur-sm shadow-md mb-8">
+            <Tooltip>
             <TooltipTrigger asChild>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-serif mb-8 cursor-help">
-                Meet Our Team
-              </h2>
+              {/* Using SparklesText for the heading */}
+              <div className="mb-8 cursor-help">
+                <SparklesText text="Meet Our Team" className="text-4xl sm:text-5xl md:text-6xl" colors={{first: "hsl(var(--primary))", second: "hsl(var(--secondary))"}} />
+              </div>
             </TooltipTrigger>
             <TooltipContent side="bottom" className="bg-secondary text-secondary-foreground">
               <p>The People Behind Corbent</p>
             </TooltipContent>
-          </Tooltip>
-          <div className="mt-12 flex justify-center"> {/* Centering the card */}
+            </Tooltip>
+          </div>
+          
+          {/* New Team Card Layout */}
+          <div className="mt-0 flex justify-center"> {/* Removed mt-12 as title has mb-8 */}
             <motion.div
-              variants={itemVariants}
-              whileHover={{ scale: 1.03, y: -5, boxShadow: "0px 10px 25px rgba(0,0,0,0.12)" }}
-              transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="w-full max-w-md" // Made card slightly wider
+              variants={itemVariants} // You might want to define specific variants for this card
+              initial="hidden" // Example initial state
+              animate="visible" // Example animate state
+              whileHover={{ scale: 1.02, boxShadow: "0px 15px 30px rgba(var(--primary-rgb), 0.2)" }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="w-full max-w-4xl" // Wider card
             >
-              <Card className="overflow-hidden text-center h-full flex flex-col shadow-2xl"> {/* Added more shadow */}
-                <CardHeader className="p-0 relative">
-                  <div className="w-full h-80 relative"> {/* Increased image height */}
-                    <Image
-                      src="https://i.ibb.co/ZznVWGJD/Rudaiba-pic.jpg" // Placeholder, user to provide direct link
-                      alt="Rudaiba Tarannum"
-                      width={400}
-                      height={400}
-                      className="rounded-t-lg object-cover"
-                    />
+              <Card className="overflow-hidden shadow-2xl md:flex md:flex-row bg-card/80 backdrop-blur-sm">
+                {/* Left Side - PFP */}
+                <div className="md:w-1/2 relative min-h-[300px] md:min-h-full">
+                  <Image
+                    src="https://i.ibb.co/8Cd1Lkh/Rudaiba-Tarannum-photo.jpg"
+                    alt="Rudaiba Tarannum"
+                    layout="fill"
+                    objectFit="cover"
+                    className="md:rounded-l-lg md:rounded-r-none rounded-t-lg"
+                  />
+                </div>
+
+                {/* Right Side - Info, Socials, LessWrong Link */}
+                <div className="md:w-2/3 p-6 md:p-10 flex flex-col justify-between">
+                  <div>
+                    <CardTitle className="text-3xl lg:text-4xl font-bold text-primary font-serif">
+                      Rudaiba Tarannum
+                    </CardTitle>
+                    <CardDescription className="text-lg text-muted-foreground mt-1">
+                      Founder
+                    </CardDescription>
+                    
+                    <p className="mt-4 text-foreground/90 leading-relaxed">
+                      Rudaiba is driving Corbent&amp;apos;s mission to develop and deploy next-generation direct air capture technology, aiming for gigaton-scale CO₂ removal.
+                    </p>
+
+                    <div className="mt-6 flex space-x-4">
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="YouTube">
+                        <Youtube className="h-7 w-7" />
+                      </a>
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+                        <Linkedin className="h-7 w-7" />
+                      </a>
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Substack">
+                        <Substack className="h-7 w-7" />
+                      </a>
+                    </div>
                   </div>
-                </CardHeader>
-                <CardContent className="p-8 flex-grow mt-4"> {/* Added mt-4 to prevent overlap */}
-                  <CardTitle className="text-3xl font-bold text-primary font-serif">Rudaiba Tarannum</CardTitle>
-                  <CardDescription className="text-lg text-muted-foreground mt-2">Founder</CardDescription>
-                  {/* Bio removed as per request */}
-                </CardContent>
-                <CardFooter className="p-4 bg-muted/30 border-t flex justify-center"> {/* Centering footer content */}
-                  <p className="text-xs text-muted-foreground">Founder</p>
-                </CardFooter>
+
+                  <div className="mt-8 pt-6 border-t border-border/50">
+                    <h4 className="text-xl font-semibold text-foreground mb-3 font-serif">
+                      Our Vision for Climate Restoration
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Dive deeper into Corbent&amp;apos;s master plan and the science behind our approach on LessWrong.
+                    </p>
+                    <a
+                      href="https://www.lesswrong.com/posts/RCifjM58vph2iFYEy/corbent-a-master-plan-for-next-generation-direct-air-capture-1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block" // To allow button to take its own width
+                    >
+                      <RainbowButton>
+                        Read on LessWrong
+                      </RainbowButton>
+                    </a>
+                  </div>
+                </div>
               </Card>
             </motion.div>
-            {/* Add more team members here as needed */}
           </div>
         </div>
       </AnimatedSection>

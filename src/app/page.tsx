@@ -16,6 +16,7 @@ import { ArrowRight, CheckCircle2, Zap, Scaling, ShieldCheck, GitCommitHorizonta
 import { motion } from "framer-motion";
 import { AnimatedSection, itemVariants } from "~/components/layout/animated-section"; // Import AnimatedSection
 import { GlowingEffect } from "~/components/ui/glowing-effect"; // Import the effect component
+import ExpertVoicesSection from '~/components/layout/expert-voices-section';
 
 const comparisonData = [
   {
@@ -300,6 +301,8 @@ export default function HomePage() {
           </AnimatedSection>
         </div>
       </section>
+
+      <ExpertVoicesSection />
       
       {/* Call to Action Section */}
       <section className="w-full py-20 md:py-32 bg-background text-center">

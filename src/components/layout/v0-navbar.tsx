@@ -3,7 +3,6 @@
 import type * as React from "react"
 import { motion } from "framer-motion"
 import { Home, Cpu, Info } from "lucide-react" // Updated icons
-import { useTheme } from "next-themes"
 import Link from "next/link" // Import Link for navigation
 import Image from "next/image" // Import Next.js Image component
 
@@ -86,9 +85,7 @@ const sharedTransition = {
 
 // Renamed function to V0Navbar
 export function V0Navbar() {
-  const { theme } = useTheme()
-
-  // const isDarkTheme = theme === "dark"; // Removed as it's unused
+  // const { theme } = useTheme(); // Unused theme variable
 
   return (
     <motion.nav
