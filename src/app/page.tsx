@@ -324,9 +324,6 @@ export default function HomePage() {
       {/* Visual Timeline/Roadmap Section */}
       {/* ... (previous timeline code) ... */}
 
-      {/* Call to Action Section */}
-      {/* ... (previous CTA code) ... */}
-      {/* Removed stray comment terminator from here */}
     </main>
   );
 }

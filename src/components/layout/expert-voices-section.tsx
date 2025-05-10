@@ -12,7 +12,7 @@ const expertVoicesData = [
     name: "Prof. T. Alan Hatton",
     title: "MIT",
     quote: "Presenting Verdox’s scale‑up targets at MIT’s CEEPR workshop, he showed the “Nth‑of‑a‑kind” electro‑swing plant at <strong>250 kt yr&#x2011;¹ with total costs of <em>$40–80 per tonne</em>, energy 1.2–2.5 GJ t&#x2011;¹</strong>”.",
-    pfpUrl: "/corbent_logo.png", // Corbent logo as placeholder
+    pfpUrl: "https://i.ibb.co/bRRTnbZF/corbent-logo.png", // Corbent logo as placeholder
   },
   {
     name: "International Energy Agency",
@@ -20,7 +20,7 @@ const expertVoicesData = [
     quote: "In its 2022 <em>Direct Air Capture</em> review the IEA concluded that “in locations with high renewable energy potential … <strong>capture costs could fall below USD 100/tCO₂ by 2030</strong>” given continued innovation and deployment learning curves.",
     sourceLink: "https://www.iea.org/reports/direct-air-capture-2022/executive-summary?utm_source=chatgpt.com",
     sourceText: "IEA Report",
-    pfpUrl: "/corbent_logo.png", // Corbent logo as placeholder
+    pfpUrl: "https://i.ibb.co/bRRTnbZF/corbent-logo.png", // Corbent logo as placeholder
   },
   {
     name: "U.S. Department of Energy",
@@ -28,13 +28,13 @@ const expertVoicesData = [
     quote: "DOE’s flagship CDR initiative commits federal funding only to pathways that can reach <strong>“gigatonne scales for less than $100 per net metric tonne”</strong> before 2032.",
     sourceLink: "https://www.energy.gov/topics/carbon-negative-shot",
     sourceText: "Energy.gov",
-    pfpUrl: "/corbent_logo.png", // Corbent logo as placeholder
+    pfpUrl: "https://i.ibb.co/bRRTnbZF/corbent-logo.png", // Corbent logo as placeholder
   },
   {
     name: "Peer‑reviewed TEA",
     title: "ACS Energy & Fuels, 2023",
     quote: "A bottom‑up bill‑of‑materials analysis (no battery analogies) of the same electro‑swing architecture projects <strong>$56–97 t&#x2011;¹</strong> at a 200 kt yr&#x2011;¹ plant powered by $25 MWh wind and using basalt storage; sheet cost and lifetime are the dominant knobs.",
-    pfpUrl: "/corbent_logo.png", // Corbent logo as placeholder
+    pfpUrl: "https://i.ibb.co/bRRTnbZF/corbent-logo.png", // Corbent logo as placeholder
   },
   {
     name: "Carbfix consortium",
@@ -42,7 +42,7 @@ const expertVoicesData = [
     quote: "Their 2018 cost audit for dissolved CO₂ injection into in‑situ basalt reports a <strong>fully loaded storage cost “< US$25 per tonne”</strong> once the stream is already compressed.",
     sourceLink: "https://en.wikipedia.org/wiki/Carbfix?utm_source=chatgpt.com",
     sourceText: "Wikipedia",
-    pfpUrl: "/corbent_logo.png", // Corbent logo as placeholder
+    pfpUrl: "https://i.ibb.co/bRRTnbZF/corbent-logo.png", // Corbent logo as placeholder
   },
 ];
 
