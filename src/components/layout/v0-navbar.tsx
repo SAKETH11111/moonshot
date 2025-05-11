@@ -2,7 +2,8 @@
 
 import type * as React from "react"
 import { motion } from "framer-motion"
-import { Home, Cpu, Info, Newspaper } from "lucide-react" // Updated icons, added Newspaper
+import { Home, Cpu, Info, Newspaper, Presentation } from "lucide-react"
+import { ThemeToggle } from "~/components/layout/theme-toggle"; // Import ThemeToggle
 import Link from "next/link" // Import Link for navigation
 import Image from "next/image" // Import Next.js Image component
 
@@ -41,12 +42,20 @@ const menuItems: MenuItem[] = [
     iconColor: "text-primary",
   },
   {
+    icon: <Presentation className="h-5 w-5" />,
+    label: "One-Pager",
+    href: "/figma-one-pager",
+    // Using secondary color gradient for variety
+    gradient: "radial-gradient(circle, hsl(var(--secondary) / 0.15) 0%, hsl(var(--secondary) / 0.06) 50%, hsl(var(--secondary) / 0.0) 100%)",
+    iconColor: "text-secondary",
+  },
+  {
     icon: <Info className="h-5 w-5" />, // Icon for About
     label: "About",
     href: "/about",
-     // Using secondary color gradient
-    gradient: "radial-gradient(circle, hsl(var(--secondary) / 0.15) 0%, hsl(var(--secondary) / 0.06) 50%, hsl(var(--secondary) / 0.0) 100%)",
-    iconColor: "text-secondary",
+     // Using primary color gradient
+    gradient: "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.06) 50%, hsl(var(--primary) / 0.0) 100%)",
+    iconColor: "text-primary",
   },
   // Removed Settings and Profile items
 ]
@@ -164,6 +173,9 @@ export function V0Navbar() {
           </motion.li>
         ))}
       </ul>
+      <div className="ml-auto pl-2"> {/* Added ml-auto to push it to the right, and some padding */}
+        <ThemeToggle />
+      </div>
     </motion.nav>
   )
 }
