@@ -30,6 +30,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/technology", label: "Technology" },
   { href: "/about", label: "About Us" },
+  { href: "/article", label: "Article" },
   // { href: "/contact", label: "Contact" }, // Removed Contact link
 ];
 

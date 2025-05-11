@@ -2,7 +2,7 @@
 
 import type * as React from "react"
 import { motion } from "framer-motion"
-import { Home, Cpu, Info } from "lucide-react" // Updated icons
+import { Home, Cpu, Info, Newspaper } from "lucide-react" // Updated icons, added Newspaper
 import Link from "next/link" // Import Link for navigation
 import Image from "next/image" // Import Next.js Image component
 
@@ -33,12 +33,20 @@ const menuItems: MenuItem[] = [
     iconColor: "text-secondary",
   },
   {
+    icon: <Newspaper className="h-5 w-5" />, // Using Newspaper icon for Article
+    label: "Article",
+    href: "/article",
+    // Using primary color gradient for variety
+    gradient: "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.06) 50%, hsl(var(--primary) / 0.0) 100%)",
+    iconColor: "text-primary",
+  },
+  {
     icon: <Info className="h-5 w-5" />, // Icon for About
     label: "About",
     href: "/about",
-     // Using primary color gradient again for variety
-    gradient: "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.06) 50%, hsl(var(--primary) / 0.0) 100%)",
-    iconColor: "text-primary",
+     // Using secondary color gradient
+    gradient: "radial-gradient(circle, hsl(var(--secondary) / 0.15) 0%, hsl(var(--secondary) / 0.06) 50%, hsl(var(--secondary) / 0.0) 100%)",
+    iconColor: "text-secondary",
   },
   // Removed Settings and Profile items
 ]

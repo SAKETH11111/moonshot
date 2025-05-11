@@ -4,8 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: "Kievit", var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: "Charter", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: var(--font-serif), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @theme inline {
@@ -165,5 +165,158 @@
       hsl(var(--primary) / 0.15) 50%,
       hsl(var(--primary) / 0.0) 100%
     );
+  }
+}
+
+@layer components {
+  .prose {
+    /* General Prose Enhancements */
+    @apply text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    font-family: var(--font-serif);
+    @apply tracking-tight;
+  }
+
+  .prose h2 {
+    @apply text-primary border-b border-primary/30 pb-2 mb-6 mt-12 text-3xl font-semibold;
+  }
+  .dark .prose h2 {
+    @apply text-primary;
+  }
+
+  .prose h3 {
+    @apply text-secondary mb-4 mt-10 text-2xl font-semibold;
+  }
+  .dark .prose h3 {
+    @apply text-secondary;
+  }
+
+  .prose p {
+    @apply leading-relaxed my-5 text-base md:text-lg; /* Increased line height */
+  }
+  .dark .prose p {
+    @apply text-foreground/90;
+  }
+
+  .prose a {
+    @apply text-primary font-medium no-underline transition-colors duration-200;
+  }
+  .prose a:hover, .prose a:focus {
+    @apply text-primary/80 underline;
+  }
+  .dark .prose a {
+    @apply text-primary;
+  }
+  .dark .prose a:hover, .dark .prose a:focus {
+    @apply text-primary/80;
+  }
+
+  .prose strong {
+    @apply font-semibold text-foreground;
+  }
+  .dark .prose strong {
+    @apply text-foreground;
+  }
+
+
+  .prose ul, .prose ol {
+    @apply my-5 pl-6;
+  }
+  .prose ul li::marker {
+    @apply text-primary;
+  }
+  .prose ol li::marker {
+    @apply text-primary font-semibold;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-primary bg-primary/5 dark:bg-primary/10 p-4 my-6 rounded-r-md;
+    @apply text-base italic text-foreground/80 dark:text-foreground/70;
+  }
+  .prose blockquote p {
+    @apply my-2;
+  }
+
+  .prose figure {
+    @apply my-8;
+  }
+  .prose figure img {
+    @apply rounded-lg shadow-md mx-auto; /* Centered and styled images */
+  }
+  .prose figcaption {
+    @apply text-sm italic text-muted-foreground mt-2 text-center;
+  }
+
+  .prose hr {
+    @apply my-12 border-border/50;
+  }
+
+  /* Footnotes Styling */
+  .prose .footnote-reference sup {
+    @apply font-normal; /* Reset sup styling if needed */
+  }
+  .prose .footnote-reference sup a {
+    @apply text-secondary no-underline text-xs align-super; /* Adjusted size and color */
+    padding: 0.1em 0.25em;
+    border-radius: theme('borderRadius.sm');
+    transition: background-color 0.2s ease-in-out;
+  }
+  .prose .footnote-reference sup a:hover {
+    @apply bg-secondary/10 text-secondary;
+  }
+  .dark .prose .footnote-reference sup a {
+    @apply text-secondary;
+  }
+   .dark .prose .footnote-reference sup a:hover {
+    @apply bg-secondary/20 text-secondary;
+  }
+
+
+  .prose .footnote-section {
+    @apply mt-12 pt-6 border-t border-border/50 text-sm;
+  }
+  .prose .footnote-section .footnote-item {
+    @apply mb-3 pl-2;
+    counter-increment: footnote-counter;
+  }
+   .prose .footnote-section .footnote-item::marker {
+    content: "[" counter(footnote-counter) "] ";
+    @apply text-primary font-semibold pr-1;
+  }
+
+  .prose .footnote-section .footnote-item p {
+    @apply inline my-0 text-sm; /* Ensure footnote text is inline with marker */
+  }
+  .prose .footnote-section .footnote-back-link a {
+     @apply text-secondary no-underline font-bold;
+  }
+   .prose .footnote-section .footnote-back-link a:hover {
+     @apply underline;
+  }
+
+  /* Table styling */
+  .prose table {
+    @apply w-full my-6 text-left border-collapse;
+  }
+  .prose th {
+    @apply border-b-2 border-primary/50 px-4 py-2 text-primary font-semibold;
+  }
+  .dark .prose th {
+     @apply border-primary/70 text-primary;
+  }
+  .prose td {
+    @apply border-b border-border px-4 py-2;
+  }
+  .prose tr:last-child td {
+    @apply border-b-0;
+  }
+  .prose thead th {
+    @apply align-bottom;
+  }
+  .prose tbody tr:nth-child(even) {
+    @apply bg-accent/50 dark:bg-accent/10;
   }
 }

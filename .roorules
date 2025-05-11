@@ -14,20 +14,62 @@
 - tRPC (likely for future API needs, based on initial setup)
 
 ## Design & Development Guidelines
-- **UI Components:** Always use ShadN components where applicable ([`src/components/ui/`](src/components/ui/:0)). Maintain consistency with the chosen "new-york" style ([`components.json`](components.json:3)).
-- **Color Theme:**
-    - Primary: Teal (defined as `--primary` in [`src/styles/globals.css`](src/styles/globals.css:60))
-    - Secondary: Orange/Coral (defined as `--secondary` in [`src/styles/globals.css`](src/styles/globals.css:63))
-    - Use theme variables (`text-primary`, `bg-secondary`, etc.) instead of hardcoded colors or Tailwind color palette names (e.g., `text-teal-500`).
-- **Animations:**
-    - Use `framer-motion` for UI animations.
+
+**1. Theming & Styling:**
+    - **Color System:**
+        - Colors are defined using `oklch` and CSS variables (e.g., `--primary`, `--background`) in [`src/styles/globals.css`](src/styles/globals.css:53) for both light and dark themes.
+        - Always use these theme variables (e.g., `text-primary`, `bg-card`) instead of hardcoded colors or direct Tailwind palette names (e.g., `text-teal-500`).
+    - **Dark Mode:**
+        - Enabled using the `class` strategy via [`ThemeProvider`](src/components/theme-provider.tsx:7) (configured in [`src/app/layout.tsx`](src/app/layout.tsx:42)).
+        - Use `suppressHydrationWarning` on the `<html>` tag in [`src/app/layout.tsx`](src/app/layout.tsx:40) to prevent theme-related hydration issues.
+    - **Fonts:**
+        - Manage and load fonts using `next/font` (see [`src/app/layout.tsx`](src/app/layout.tsx:4)). Assign them to CSS variables (`--font-sans`, `--font-serif`) defined in [`src/styles/globals.css`](src/styles/globals.css:7) and applied at the `<html>` level.
+        - Use `font-sans` (Kievit via `--font-sans`) for general UI text.
+        - Use `font-serif` (Charter via `--font-serif`) for headings and specific textual emphasis, particularly within `.prose` content.
+    - **Tailwind CSS:**
+        - The project uses `tailwindcss-animate` and `@tailwindcss/typography` plugins ([`tailwind.config.ts`](tailwind.config.ts:96)).
+        - Centralize reusable keyframe animations in [`tailwind.config.ts`](tailwind.config.ts:73) (e.g., `accordion-down`, `rainbow`).
+        - Define custom, project-specific Tailwind utilities in the `@layer utilities` of [`src/styles/globals.css`](src/styles/globals.css:154) (e.g., `.bg-gradient-radial`) when standard utilities are insufficient.
+
+**2. Layout & Structure:**
+    - **Root Layout:** Adhere to the established structure in [`src/app/layout.tsx`](src/app/layout.tsx:49): a full-height flex column (`min-h-screen flex flex-col`) with a sticky, blurred header and an expanding main content area (`flex-1`).
+    - **Header:** The main header ([`V0Navbar`](src/components/layout/v0-navbar.tsx:8) or similar) should be sticky (`sticky top-0 z-50`) and typically features a blurred background with a border (e.g., `backdrop-blur-md bg-background/80 border-b border-border/60`).
+    - **Page Content Container:** Use the standard `container` class (defined in [`tailwind.config.ts`](tailwind.config.ts:14) and applied via `mx-auto px-4 md:px-6`) for centering main page content and applying consistent padding.
+    - **Path Aliases:** Utilize defined path aliases from [`components.json`](components.json:13) (e.g., `~/components`, `~/lib/utils`, `~/components/ui`) for consistent and cleaner imports.
+
+**3. Component Development:**
+    - **shadcn/ui:**
+        - Always use shadcn/ui components ([`src/components/ui/`](src/components/ui/:0)) where applicable, maintaining consistency with the "new-york" style ([`components.json`](components.json:3)).
+        - Use the `cn` utility from `~/lib/utils` for merging Tailwind classes in components.
+    - **Custom Components:**
+        - For components requiring multiple visual variants (style, size), use `class-variance-authority` (cva). Export the `cva` variants if they need to be reused or composed (see [`src/components/ui/button.tsx`](src/components/ui/button.tsx:7) for an example).
+        - For polymorphic components (e.g., a button that might render as an `<a>` tag), use the `asChild` prop pattern with `@radix-ui/react-slot` (see [`src/components/ui/button.tsx`](src/components/ui/button.tsx:48)).
+    - **Client Components:** Ensure components requiring animations, event handlers, or client-side hooks have the `"use client";` directive at the top of the file.
+    - **Images:** Utilize the `next/image` component for rendering images to benefit from Next.js's optimization features (see [`src/components/layout/v0-navbar.tsx`](src/components/layout/v0-navbar.tsx:112)).
+    - **Icons:**
+        - Use icons from the `lucide-react` library ([`components.json`](components.json:20)).
+        - When embedding icons within buttons or similar elements, they default to `size-4` (1rem). Apply explicit Tailwind size classes (e.g., `className='size-5'`) directly to the icon component if a different size is needed.
+    - **Accessibility & Interaction:** Ensure all custom interactive UI components have clear and accessible styling for `focus-visible`, `disabled`, and `aria-invalid` states, following patterns in shadcn/ui components (e.g., using `ring` and `border-ring` for focus).
+
+**4. Animations:**
+    - Use `framer-motion` for UI animations (as seen in [`src/components/layout/v0-navbar.tsx`](src/components/layout/v0-navbar.tsx:4) and page components).
     - Apply consistent fade-in/slide-up animations to page sections using the reusable [`AnimatedSection`](src/components/layout/animated-section.tsx:0) component.
-    - Use stagger animations for lists or grids of items (e.g., cards) where appropriate, utilizing `AnimatedSection` with `staggerChildren` prop and `itemVariants`.
-    - Ensure components requiring animations or client-side hooks have the `"use client";` directive.
-- **Layout:**
-    - Header ([`Navbar`](src/components/layout/navbar.tsx:36)) should be sticky and transition background/shadow on scroll.
-    - Maintain a consistent layout structure across pages.
-- **Code Quality:** Address hydration errors and runtime errors promptly. Ensure proper component imports/exports.
+    - Use stagger animations for lists or grids of items (e.g., cards) where appropriate, by utilizing `AnimatedSection` with the `staggerChildren` prop and `itemVariants`.
+
+**5. Navigation:**
+    - Use `next/link` for all internal navigation.
+    - When `next/link` wraps a `framer-motion` component (e.g., `motion.a`), use `legacyBehavior` and `passHref` props on the `Link` component to ensure proper functionality and accessibility (see [`src/components/layout/v0-navbar.tsx`](src/components/layout/v0-navbar.tsx:134)).
+
+**6. Content & Typography (Prose):**
+    - For rich text content (e.g., blog articles, detailed descriptions), wrap the content in an element with the `prose` class.
+    - This applies extensive, consistent typography and styling defined in [`src/styles/globals.css`](src/styles/globals.css:171) via the `@tailwindcss/typography` plugin. Key `prose` styles include:
+        - Headings (`h1`-`h6`) use `font-serif` (Charter). `h2` is styled with `text-primary` and a bottom border; `h3` with `text-secondary`.
+        - Specific styling for paragraphs, links (using `text-primary`), lists (markers styled with `text-primary`), blockquotes, images (centered, rounded, shadowed), footnotes, and tables.
+
+**7. Code Quality & Project Cleanliness:**
+    - Address hydration errors and runtime errors promptly.
+    - Ensure proper component imports/exports and correct component usage (e.g., Next.js `Link` with shadcn/ui `NavigationMenuLink` when appropriate for shadcn navigation components).
+    - Maintain project cleanliness by removing temporary files (e.g., `v0files`), unused code, or directories after integration or experimentation.
 
 ## Recent Work (May 2025)
 - **Animations Integration:** Implemented fade-in, slide-up, and stagger animations inspired by a v0.dev example across Home, Technology, and About pages using `framer-motion` and the `AnimatedSection` component.
@@ -42,3 +84,23 @@
 - You can also use Serper and Fetch MCP Tools for something that Context can't satisfy. (Note: These MCPs were mentioned but may not be currently connected).
 - If the user provides a URL for a component or package then use the fetch tool to scrape it and use that. (Note: Requires a connected Fetch MCP).
 - Maintain a list of used ShadCN components in [`ShadCN-context.md`](ShadCN-context.md:0) (make one if it doesn't exist). It should contain all the components used and reference this to check if you need to install a ShadCN component from scratch with the CLI tool or not.
+- **MCP Server Usage**: Utilize connected MCP Servers for specialized tasks:
+    - **`shadcn` MCP**: Use the `add_item` tool to add new shadcn/ui components. This helps maintain consistency with [`components.json`](components.json:3) and the project setup. Always check [`ShadCN-context.md`](ShadCN-context.md:0) first to see if a component has already been added.
+    - **`shadcn-ui-unofficial` MCP**: Use `get_component` or `get_component_demo` to fetch source code or usage examples for shadcn/ui components, aiding in understanding or troubleshooting.
+    - **`github.com/upstash/context7-mcp`**: (As previously noted) For resolving library IDs and fetching documentation via `resolve-library-id` and `get-library-docs`.
+    - **`github.com/executeautomation/mcp-playwright`**: For Playwright-based browser automation and testing tasks, if required.
+- **Environment Context**: Pay attention to `environment_details` provided with each interaction. This includes project file structure, open files, and active terminals, offering valuable context for planning and execution.
+- **File Modifications**:
+    - For targeted changes to existing files (e.g., modifying a few lines, adding a function), tools like [`apply_diff`](#apply_diff:0) or [`insert_content`](#insert_content:0) are preferred.
+    - [`write_to_file`](#write_to_file:0) is used for creating new files or when a complete rewrite of an existing file is necessary. Remember that [`write_to_file`](#write_to_file:0) requires the *entire* file content.
+    - [`search_and_replace`](#search_and_replace:0) can be used for specific text or regex-based replacements within a file.
+- **Exploring the Project**:
+    - [`list_files`](#list_files:0) can be used to see the contents of directories.
+    - [`search_files`](#search_files:0) helps find specific code patterns or text across multiple files.
+    - [`list_code_definition_names`](#list_code_definition_names:0) provides an overview of classes, functions, etc., in source files.
+- **Executing Commands**:
+    - CLI commands will be run using [`execute_command`](#execute_command:0). I will explain what each command does.
+- **Clarifications**:
+    - If I need more information, I will use [`ask_followup_question`](#ask_followup_question:0) and provide suggested answers.
+- **Task Completion**:
+    - Once the task is believed to be complete, I will use [`attempt_completion`](#attempt_completion:0) to present the result.

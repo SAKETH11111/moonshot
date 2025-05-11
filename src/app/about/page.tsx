@@ -216,13 +216,13 @@ export default function AboutUsPage() {
                       Dive deeper into Corbent&amp;apos;s master plan and the science behind our approach on LessWrong.
                     </p>
                     <a
-                      href="https://www.lesswrong.com/posts/RCifjM58vph2iFYEy/corbent-a-master-plan-for-next-generation-direct-air-capture-1"
-                      target="_blank"
+                      href="/article"
+                      target="_self" // Changed to _self as it's an internal link now
                       rel="noopener noreferrer"
                       className="inline-block" // To allow button to take its own width
                     >
                       <RainbowButton>
-                        Read on LessWrong
+                        Read Our Article
                       </RainbowButton>
                     </a>
                   </div>

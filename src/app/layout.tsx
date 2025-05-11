@@ -1,7 +1,7 @@
 import "~/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Inter as FontSans } from "next/font/google"; // Using Inter as a placeholder for Kievit
+import { Roboto, Raleway } from "next/font/google";
 
 // import { TRPCReactProvider } from "~/trpc/react"; // Removed unused tRPC provider
 import { ThemeProvider } from "~/components/theme-provider";
@@ -13,31 +13,26 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "https://i.ibb.co/bRRTnbZF/corbent-logo.png" }], // Updated favicon path
 };
 
-// Placeholder for Kievit font (sans-serif) - replace with actual font setup
-const fontSans = FontSans({
+const fontSans = Roboto({
   subsets: ["latin"],
+  weight: ["400", "500", "700"], // Added 500 for medium
   variable: "--font-sans",
+  display: "swap",
 });
 
-// Placeholder for Charter font (serif) - replace with actual font setup
-// const fontSerif = localFont({
-//   src: [ // Assuming you have font files in public/fonts or src/assets/fonts
-//     // Update these paths to your actual font files
-//     // { path: '../../public/fonts/Charter-Regular.woff2', weight: '400', style: 'normal' },
-//     // { path: '../../public/fonts/Charter-Italic.woff2', weight: '400', style: 'italic' },
-//     // { path: '../../public/fonts/Charter-Bold.woff2', weight: '700', style: 'normal' },
-//   ],
-//   variable: "--font-serif",
-//   display: "swap", // Good for performance
-//   // fallback: ['Georgia', 'Times New Roman', 'serif'] // Optional fallback
-// });
+const fontSerif = Raleway({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"], // Added 300 (light) and 500 (medium)
+  variable: "--font-serif",
+  display: "swap",
+});
 
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fontSans.variable}`} suppressHydrationWarning>{/* Removed fontSerif.variable for now */}
+    <html lang="en" className={`${fontSans.variable} ${fontSerif.variable}`} suppressHydrationWarning>
       <body>
         <ThemeProvider
           attribute="class"
