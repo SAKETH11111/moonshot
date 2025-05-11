@@ -202,6 +202,33 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Video Presentation Section */}
+      <section className="w-full py-16 md:py-24 lg:py-32 bg-muted/20 dark:bg-muted/10 text-foreground">
+        <div className="container mx-auto px-6 md:px-8">
+          <AnimatedSection className="max-w-3xl mx-auto text-center mb-12 md:mb-16" animationStyle="fadeInUp">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl font-serif text-primary">
+              Our Vision in Action
+            </h2>
+            <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
+              Watch our founder present the core ideas and mission behind Corbent.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection
+            tag="div"
+            delay={0.2}
+            className="max-w-3xl mx-auto aspect-video" // aspect-video for 16:9 ratio
+          >
+            <iframe
+              className="w-full h-full rounded-lg shadow-xl"
+              src="https://www.youtube.com/embed/5xNq7GBrZZY"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Comparison Table Section */}
       <section className="w-full py-16 md:py-24 lg:py-32 bg-background text-foreground">
         <div className="container mx-auto px-4 md:px-6">
