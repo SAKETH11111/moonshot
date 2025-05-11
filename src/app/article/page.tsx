@@ -13,7 +13,8 @@ const ArticlePage = () => {
       try {
         // Adjust the path to where your actual HTML file is located
         // Fetch content from the static path in the public directory
-        const response = await fetch('/blog/our-dac-technology/article-content.html');
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+        const response = await fetch(`${basePath}/blog/our-dac-technology/article-content.html`);
         if (!response.ok) {
           throw new Error(`Failed to fetch article: ${response.statusText} (${response.status})`);
         }
